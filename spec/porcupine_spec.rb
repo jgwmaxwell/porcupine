@@ -53,7 +53,7 @@ describe Porcupine do
       porcupine.execute
     end
 
-    it "lets Ruby exceptions propogate" do
+    it "lets Ruby exceptions propagate" do
       future.stub(:get).and_raise(RuntimeError)
       porcupine.should_not_receive(:decomposeException)
 

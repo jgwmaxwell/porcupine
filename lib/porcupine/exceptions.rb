@@ -1,6 +1,7 @@
 class Porcupine
-  class FailedExecutionError < RuntimeError; end
-  class RejectedError < RuntimeError; end
-  class ShortCircuitError < RuntimeError; end
-  class TimeoutError < RuntimeError; end
+  class Failure < RuntimeError
+    class RejectedError < Failure; end
+    class ShortCircuitError < Failure; end
+    class TimeoutError < Failure; end
+  end
 end
