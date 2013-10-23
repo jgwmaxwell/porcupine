@@ -7,6 +7,7 @@ describe Porcupine do
     described_class.new("test", &block)
   end
 
+  # https://github.com/Netflix/Hystrix/issues/102
   after do
     com.netflix.hystrix.Hystrix.reset
   end
