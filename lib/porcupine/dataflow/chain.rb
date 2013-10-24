@@ -1,4 +1,5 @@
 # AKA "Promise Pipelining" or "Call Stream"
+# or "Unix Pipes" ;)
 # Also see Link class
 class Porcupine
   class Chain
