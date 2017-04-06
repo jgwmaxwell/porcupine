@@ -30,27 +30,6 @@ class Porcupine < com.netflix.hystrix.HystrixCommand
     raise decomposeException(e)
   end
 
-  # Create an observer to subscribe to when work is completed.
-  # +Non-blocking+, +Starts work+
-  # CTC: Is this the same as HystrixCommand's "observe" that subscribes a proxy observer (ReplaySubject)?
-  def observe
-    Observable.new(super)
-  end
-
-  # Create an observer lazily that will kick off work when subscribed to.
-  # +Non-blocking+
-  def toObservable(*args)
-    result = super
-
-    # Only wrap the outer-most call; otherwise Java gets angry because the class of the
-    # returned object won't match the signature when the calls recurse
-    unless caller.first.match(/toObservable/) || caller.first.match(/observe/)
-      result = Observable.new(result)
-    end
-
-    result
-  end
-
   # This triggers execution in a separate thread,
   # returning a future (or "Promise").
   # Call #get on it to get on the result.
